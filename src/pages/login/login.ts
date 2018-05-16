@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
+//import { AuthProvider } from '../providers/auth/auth';
+import { AuthProvider } from '../../providers/providers';
+import { MainPage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -10,7 +13,7 @@ export class LoginPage {
 
   @ViewChild('player') player;
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, private auth: AuthProvider) { }
 
   // It's interesting to remove the src and put it back
   // when entering and leaving the page so there are no memory leaks.
@@ -33,7 +36,12 @@ export class LoginPage {
     console.log('Signup clicked');
   }
 
-  goToLogin() {
-    console.log('Login clicked');
+  goToFacebookLogin() {
+    this.auth.loginWithFacebook().subscribe((success) => {
+      console.log(success);
+      this.navCtrl.push(MainPage);
+      }, err => {
+        console.log(err);
+    });
   }
 }

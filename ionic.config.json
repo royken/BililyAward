@@ -2,5 +2,7 @@
   "name": "bilillyAward",
   "app_id": "c231abe3",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
