@@ -5,9 +5,10 @@
   "LOGIN": "Connexion",
   "SIGNUP": "Inscription",
 
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Recherche",
-  "TAB3_TITLE": "Paramètres",
+  "TAB1_TITLE": "Actu",
+  "TAB2_TITLE": "Vidéo",
+  "TAB3_TITLE": "Award",
+  "TAB4_TITLE": "Profile",
 
   "MAP_TITLE": "Carte",
 

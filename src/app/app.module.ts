@@ -14,17 +14,22 @@ import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { AuthProvider } from '../providers/providers';
+import { ActuProvider } from '../providers/providers';
 import { MyApp } from './app.component';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 // Import the Facebook Module
 import { Facebook } from '@ionic-native/facebook'
-//import { AuthProvider } from '../providers/auth/auth';
+
+
+// Import the Google Module
+import { GooglePlus } from '@ionic-native/google-plus';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -89,11 +94,13 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     StatusBar,
     Facebook,
+    GooglePlus,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    ActuProvider
   ]
 })
 export class AppModule { }

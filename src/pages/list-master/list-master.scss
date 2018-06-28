@@ -1,3 +1,14 @@
 page-list-master {
 
+	ion-slides{
+        height: 180px;
+    }
+    .slide-item{
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        height: 180px;
+    }
+
 }

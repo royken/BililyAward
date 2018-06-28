@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { ActuProvider } from '../../providers/providers';
+import { AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
 
@@ -11,9 +13,28 @@ import { Items } from '../../providers/providers';
 })
 export class ListMasterPage {
   currentItems: Item[];
+  public actus: any[];
+  loading: any;
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController, public db: ActuProvider, public loadingCtrl: LoadingController) {
+    //this.currentItems = this.items.query();
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.showLoader();
+    this.db.listNews()   // DB List
+                              .snapshotChanges()   // Key Value Pairs
+                              .map(
+                                  changes => {
+                                    return changes.map(c => ({
+                                      key: c.payload.key, ...c.payload.val()
+                                    }))
+                                  }
+                                ).subscribe(actus => {
+                                  this.actus = actus;
+                                  console.log('events :', this.actus);
+                                  this.hideLoader();
+                              })
   }
 
   /**
@@ -36,6 +57,14 @@ export class ListMasterPage {
     addModal.present();
   }
 
+  showLoader(){
+    this.loading.present();
+  }
+
+  hideLoader(){
+    this.loading.dismiss();
+  }
+
   /**
    * Delete an item from the list of items.
    */
@@ -50,5 +79,9 @@ export class ListMasterPage {
     this.navCtrl.push('ItemDetailPage', {
       item: item
     });
+  }
+
+  detailPage(actu){
+    this.navCtrl.push('ItemDetailPage',{actu: actu});
   }
 }

@@ -32,12 +32,25 @@ export class LoginPage {
     console.log('Hello Login Page');
   }
 
+  goToLogin(){
+    this.navCtrl.push(MainPage);
+  }
+
   goToSignup() {
     console.log('Signup clicked');
   }
 
   goToFacebookLogin() {
     this.auth.loginWithFacebook().subscribe((success) => {
+      console.log(success);
+      this.navCtrl.push(MainPage);
+      }, err => {
+        console.log(err);
+    });
+  }
+
+  goToGoogleLogin() {
+    this.auth.loginWithGoogle().subscribe((success) => {
       console.log(success);
       this.navCtrl.push(MainPage);
       }, err => {

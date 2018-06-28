@@ -1,18 +1,44 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ item.name }}</ion-title>
+    <ion-title>My Neighbor Totoro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + actu.image + ')'">
   </div>
+<ion-card>
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-only (click)="regularShare(i)" color="primary" clear>
+        <ion-icon class="share-icon" name="share"></ion-icon>
+      </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-only (click)="whatsappShare(i)" color="primary" clear>
+        <ion-icon class="share-icon" name="logo-whatsapp"></ion-icon>
+      </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-only (click)="facebookShare(i)" color="primary" clear>
+        <ion-icon  class="share-icon" name="logo-facebook"></ion-icon>
+      </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-only (click)="twitterShare(i)" color="primary" clear>
+        <ion-icon class="share-icon" name="logo-twitter"></ion-icon>
+      </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-card>
 
   <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <p>{{item.about}}</p>
+    <h2>{{actu.titre}}</h2>
+    <p>{{actu.description}}</p>
   </div>
 </ion-content>

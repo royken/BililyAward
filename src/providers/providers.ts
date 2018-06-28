@@ -3,11 +3,13 @@ import { Items } from '../mocks/providers/items';
 import { Settings } from './settings/settings';
 import { User } from './user/user';
 import { AuthProvider } from './auth/auth';
+import { ActuProvider } from './actu/actu';
 
 export {
     Api,
     Items,
     Settings,
     User,
-    AuthProvider
+    AuthProvider,
+    ActuProvider
 };
